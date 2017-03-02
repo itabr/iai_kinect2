@@ -21,8 +21,11 @@
 
 #define CALIB_FILE_EXT      ".png"
 #define CALIB_FILE_COLOR    "_color" CALIB_FILE_EXT
+#define CALIB_FILE_COLOR_CHECK "_color_check" CALIB_FILE_EXT
 #define CALIB_FILE_IR       "_ir" CALIB_FILE_EXT
 #define CALIB_FILE_IR_GREY  "_grey_ir" CALIB_FILE_EXT
+#define CALIB_FILE_IR_CHECK "_ir_check" CALIB_FILE_EXT
+
 
 #define CALIB_POINTS_COLOR  "_color_points.yaml"
 #define CALIB_POINTS_IR     "_ir_points.yaml"

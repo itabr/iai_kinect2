@@ -382,6 +382,13 @@ private:
     const std::string frameNumber(oss.str());
     std::cout << "storing frame: " << frameNumber << std::endl;
     std::string base = path + frameNumber;
+    cv::Mat colorDisp, irDisp;
+    cv::cvtColor(color, colorDisp, CV_GRAY2BGR);
+    cv::drawChessboardCorners(colorDisp, boardDims, pointsColor, true);
+    cv::cvtColor(irGrey, irDisp, CV_GRAY2BGR);
+    cv::drawChessboardCorners(irDisp, boardDims, pointsIr, true);
+	
+    
 
     for(size_t i = 0; i < pointsIr.size(); ++i)
     {
@@ -397,6 +404,8 @@ private:
     if(mode == COLOR || mode == SYNC)
     {
       cv::imwrite(base + CALIB_FILE_COLOR, color, params);
+      cv::imwrite(base + CALIB_FILE_COLOR_CHECK, colorDisp, params);
+
 
       cv::FileStorage file(base + CALIB_POINTS_COLOR, cv::FileStorage::WRITE);
       file << "points" << pointsColor;
@@ -405,6 +414,7 @@ private:
     if(mode == IR || mode == SYNC)
     {
       cv::imwrite(base + CALIB_FILE_IR, ir, params);
+      cv::imwrite(base + CALIB_FILE_IR_CHECK, irDisp, params);
       cv::imwrite(base + CALIB_FILE_IR_GREY, irGrey, params);
 
       cv::FileStorage file(base + CALIB_POINTS_IR, cv::FileStorage::WRITE);
